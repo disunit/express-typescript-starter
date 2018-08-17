@@ -23,7 +23,7 @@
 > npm run grunt (or `npm run grunt watch` to watch for file changes)
 
 # Start the web app
-Go to root directory and run node app.js (or nodemon app.js if you are using Nodemon module) 
+Go to root directory and run `node app.js` (or `nodemon app.js` if you are using Nodemon module) 
 
 # Visit the demo home page
 http://localhost:1111 (you can change the port from ./src/config/globals.ts)
