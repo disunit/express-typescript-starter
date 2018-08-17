@@ -1,2 +1,7 @@
 .tscache
 node_modules
+
+# ignore compiled js files
+./app.js
+/routes
+/config
