@@ -1,3 +1,3 @@
 export let globals = {
-    port: 1111,
+    port: 1111
 };

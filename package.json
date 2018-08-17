@@ -1,17 +1,12 @@
 {
   "name": "express-ts",
   "version": "1.0.0",
-  "description": "expres ts",
-  "main": "index.js",
+  "description": "Simple web application starter kit to kick start your new project using the Express framework and server-side written in TypeScript.",
+  "main": "app.js",
   "scripts": {
     "grunt": "grunt",
-    "tsc": "tsc",
-    "start": "node ./build/bin/www"
+    "tsc": "tsc"
   },
-  "keywords": [
-    "express",
-    "ts"
-  ],
   "author": "John Makridis",
   "license": "MIT",
   "dependencies": {
