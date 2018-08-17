@@ -28,5 +28,8 @@ Go to root directory and run `node app.js` (or `nodemon app.js` if you are using
 # Visit the demo home page
 http://localhost:1111 (you can change the port from ./src/config/globals.ts)
 ```
+Demo homepage (if all the above steps followed correctly)<br> 
+![alt text](https://raw.githubusercontent.com/johnmakridis/express-typescript-starter/master/public/img/demoHomepage.png "ExpressTS homepage")
+
 ### Licence
 <a href="https://github.com/johnmakridis/express-typescript-starter/blob/master/LICENSE" target="_blank">MIT License</a>
