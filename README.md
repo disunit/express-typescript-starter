@@ -30,6 +30,3 @@ http://localhost:8080 (you can change the port from .env file)
 ```
 Demo homepage (if all the above steps followed correctly)<br> 
 ![alt text](https://raw.githubusercontent.com/johnmakridis/express-typescript-starter/master/src/public/img/demoHomepage.png "ExpressTS homepage")
-
-### Licence
-<a href="https://github.com/johnmakridis/express-typescript-starter/blob/master/LICENSE" target="_blank">MIT License</a>
