@@ -19,14 +19,14 @@
 # Install Node modules
 > npm install
 
-# Run Grunt task-runner to compile TypeScript (.ts) files into JavaScript (ES6)
-> npm run grunt (or `npm run grunt watch` to watch for file changes)
+# Run Grunt task-runner to compile TypeScript (.ts) files into JavaScript (ES6) and copy other necessary files in /dist folder 
+> npm run grunt
 
 # Start the web app
-Go to root directory and run `node app.js` (or `nodemon app.js` if you are using Nodemon module) 
+Go to /dist folder and run `node app.js` (or `nodemon app.js` if you are using Nodemon module) 
 
 # Visit the demo home page
-http://localhost:1111 (you can change the port from ./src/config/globals.ts)
+http://localhost:8080 (you can change the port from .env file)
 ```
 Demo homepage (if all the above steps followed correctly)<br> 
 ![alt text](https://raw.githubusercontent.com/johnmakridis/express-typescript-starter/master/src/public/img/demoHomepage.png "ExpressTS homepage")
