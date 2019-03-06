@@ -1,29 +1,41 @@
 {
-  "name": "express-ts",
-  "version": "1.0.0",
-  "description": "Simple web application starter kit to kick start your new project using the Express framework and server-side written in TypeScript.",
-  "main": "app.js",
-  "scripts": {
-    "grunt": "grunt",
-    "tsc": "tsc"
-  },
-  "author": "John Makridis",
-  "license": "MIT",
-  "dependencies": {
-    "@types/body-parser": "^1.17.0",
-    "@types/express": "^4.16.0",
-    "@types/node": "^10.7.1",
-    "body-parser": "^1.18.3",
-    "ejs": "^2.6.1",
-    "express": "^4.16.3"
-  },
-  "devDependencies": {
-    "grunt": "^1.0.3",
-    "grunt-cli": "^1.3.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-ts": "^6.0.0-beta.21",
-    "grunt-tslint": "^5.0.2",
-    "tslint": "^5.11.0",
-    "typescript": "^3.0.1"
-  }
+    "name": "express-typescript-starter",
+    "version": "1.0.0",
+    "description": "Simple web application starter kit to kick start your new project using the Express framework and server-side written in TypeScript.",
+    "main": "dist/app.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node ./dist/app.js",
+        "prod": "npm run build && npm run start",
+        "grunt": "grunt"
+    },
+    "author": "John Makridis",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/johnmakridis/express-typescript-starter.git"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "cors": "^2.8.5",
+        "dotenv": "^6.2.0",
+        "express": "^4.16.4",
+        "helmet": "^3.15.1",
+        "morgan": "^1.9.1"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.4",
+        "@types/dotenv": "^6.1.0",
+        "@types/express": "^4.16.1",
+        "@types/helmet": "0.0.42",
+        "@types/morgan": "^1.7.35",
+        "grunt": "^1.0.3",
+        "grunt-cli": "^1.3.2",
+        "grunt-contrib-copy": "^1.0.0",
+        "grunt-contrib-watch": "^1.1.0",
+        "grunt-ts": "^6.0.0-beta.21",
+        "grunt-tslint": "^5.0.2",
+        "tslint": "^5.11.0",
+        "typescript": "^3.1.6"
+    }
 }

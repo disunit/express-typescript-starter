@@ -1,85 +1,66 @@
-import express = require("express");
-import * as bodyParser from "body-parser";
-import * as path from "path";
-import * as http from "http";
-import { globals } from "./config/globals";
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import * as morgan from 'morgan';
+import * as cors from 'cors';
+import * as helmet from 'helmet';
+import * as path from 'path';
+import { Config } from './config/config';
 
-// Import Routes
-import * as indexRoute from "./routes/index";
+// Routes
+import { IndexRoute } from './routes/index';
 
-class Server {
+
+
+class App {
 
     public app: express.Application;
-
-
-    public static bootstrap(): Server {
-        return new Server();
-    }
-
+    private configuration: Config = new Config();
+    public indexRoute: IndexRoute = new IndexRoute();
 
     constructor() {
-
-        this.app = express();   // Create Express application instance
-        this.app.set("port", globals.port || 8080);
-
-        this.config();          // App's configuration
-
-        this.routes();          // Routes' configuration
+        this.app = express();
+        this.app.set('port', this.configuration.server.port || 3000);
+        this.config();
+        this.routes();
     }
 
-    // App's configuration
-    private config() {
+    private config(): void {
+        this.app.use(bodyParser.json()); // support application/json type post data
+        this.app.use(bodyParser.urlencoded({ extended: false })); // support application/x-www-form-urlencoded post data
+        this.app.use(express.static(path.join(__dirname, 'public')));
+        this.app.use(morgan('dev'));
+        this.app.use(cors());
+        this.app.use(helmet());
 
-        this.app.set("views", path.join(__dirname, "views"));
-        this.app.set("view engine", "ejs");
+        this.app.use((req: express.Request, res: express.Response, next: any) => {
+            res.setHeader('Access-Control-Allow-Origin', '*'); // Website you wish to allow to connect
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Request methods you wish to allow
+            res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Authorization, Content-Type'); // Request headers you wish to allow
+            res.setHeader('Access-Control-Allow-Credentials', 'true');
 
-        // mount logger
-        // this.app.use(logger("dev"));
-
-        // mount json form parser
-        this.app.use(bodyParser.json());
-
-        // mount query string parser
-        this.app.use(bodyParser.urlencoded({ extended: true }));
-
-        // add static paths
-        this.app.use(express.static(path.join(__dirname, "public")));
-
-        // catch 404 and forward to error handler
-        this.app.use(function (err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
-            let error = new Error("Not Found");
-            err.status = 404;
-            next(err);
+            next();
         });
 
 
-        this.app.listen(this.app.get("port"), () => {
-            console.log(`Server listening on port ${this.app.get("port")} \nPress CTRL+C to quit`);
+        this.app.listen(this.app.get('port'), () => {
+            console.log(`Server listening on port ${this.app.get('port')} \nPress CTRL+C to quit.`);
         });
 
-        process.on("uncaughtException", (err: Error) => {
-            console.error(`un Caught exception: ${err} stack: ${err.stack}`);
+        process.on('uncaughtException', (err) => {
+            console.log(`un Caught exception ${err} stack: ${err.stack}`);
         });
 
-        process.on("SIGINT", () => { console.log("Bye bye!"); process.exit(); });
+        process.on('SIGINT', () => {
+            console.log('Bye Bye! ;)');
+            process.exit(0);
+        });
+
     }
 
+    private routes(): void {
+        this.indexRoute.routes(this.app);
 
-    // Routes' configuration
-    private routes() {
-        let router: express.Router;
-        router = express.Router();
-
-        // create routes
-        let index: indexRoute.Index = new indexRoute.Index();
-
-        // home page
-        router.get("/", index.index.bind(index.index));
-
-        // use router middleware
-        this.app.use(router);
     }
 }
 
-let server = Server.bootstrap();
-export = server.app;
+export default new App().app;

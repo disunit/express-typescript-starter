@@ -1,13 +1,10 @@
-import * as express from "express";
+import { Request, Response } from 'express';
 
-module Route {
-
-    export class Index {
-
-        public index(req: express.Request, res: express.Response, next: express.NextFunction) {
-            res.render("index"); // render page
-        }
+export class IndexRoute {
+    public routes(app: any): void {
+        app.route('/')
+            .get((req: Request, res: Response) => {
+                res.status(403).send('Access Denied');
+            });
     }
 }
-
-export = Route;

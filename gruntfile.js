@@ -6,7 +6,7 @@ module.exports = function (grunt) {
             app: {
                 files: [{
                     src: ["src/**/*.ts", "!src/.baseDir.ts", "!src/_all.d.ts"],
-                    dest: "."
+                    dest: "dist"
                 }],
                 options: {
                     module: "commonjs",
@@ -30,16 +30,40 @@ module.exports = function (grunt) {
                 files: ["js/src/**/*.ts", "src/**/*.ts"],
                 tasks: ["ts", "tslint"]
             }
-        }
+        },
+        copy: {
+            envfile: {
+                files: [
+                    {
+                        src: ['.env'],
+                        dest: './dist',
+                        cwd: './',
+                        expand: true
+                    }
+                ]
+            },
+            public: {
+                files: [
+                    {
+                        src: ['public/**'],
+                        dest: './dist',
+                        cwd: './src/',
+                        expand: true
+                    }
+                ]
+            }
+        },
     });
 
     grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks("grunt-ts");
     grunt.loadNpmTasks("grunt-tslint");
 
     grunt.registerTask("default", [
         "ts",
-        "tslint"
+        "tslint",
+        "copy"
     ]);
 
 };
