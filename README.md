@@ -19,7 +19,7 @@
 # Install Node modules
 > npm install
 
-# Run Grunt task-runner to compile TypeScript (.ts) files into JavaScript (ES6) and copy other necessary files in /dist folder 
+# Run Grunt task-runner to compile TS files into JS and to copy the necessary folders/files in /dist folder 
 > npm run grunt
 
 # Start the web app
